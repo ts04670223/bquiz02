@@ -3,7 +3,7 @@ include_once "../base.php";
 
 
 $acc=$_POST['acc'];
-$acc=$_POST['pw'];
+$pw=$_POST['pw'];
 
 $chk=$Mem->count(['acc'=>$acc,'pw'=>$pw]);
 if ($chk) {
