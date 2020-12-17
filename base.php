@@ -2,7 +2,7 @@
 date_default_timezone_set("Asia/Taipei");
 session_start();
 $Total = new DB('total');
-
+$Mem=new DB("member");
 
 // 判斷增加瀏覽人數
 if (empty($_SESSION['total'])) {

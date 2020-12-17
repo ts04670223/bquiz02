@@ -5,11 +5,11 @@
   </legend>
   <table>
     <tr>
-      <td>帳號</td>
+      <td style="background-color: #eee;width:150px">帳號</td>
       <td><input type="text" name="" id=""></td>
     </tr>
     <tr>
-      <td>密碼</td>
+      <td style="background-color: #eee;width:150px">密碼</td>
       <td><input type="password" name="" id=""></td>
     </tr>
     <tr>
