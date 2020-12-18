@@ -24,9 +24,9 @@ include_once "base.php"
 
 	<div id="all">
 		<div id="title">
-			<?= date("m 月 d 日 l") ;?>| 今日瀏覽: <?=$_SESSION['total'];?> | 累積瀏覽: <?=$Total->q("select sum(`total`) from `total`")[0][0];?>    <a href="index.php" style="float:right;">回首頁</a></div>
+			<?= date("m 月 d 日 l"); ?>| 今日瀏覽: <?= $_SESSION['total']; ?> | 累積瀏覽: <?= $Total->q("select sum(`total`) from `total`")[0][0]; ?> <a href="index.php" style="float:right;">回首頁</a></div>
 		<div id="title2" title="健康促進網-回首頁">
-<a href="index.php"><img src="icon/02B01.jpg" style="width: 100%;" alt="健康促進網-回首頁"></a>
+			<a href="index.php"><img src="icon/02B01.jpg" style="width: 100%;" alt="健康促進網-回首頁"></a>
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">
@@ -43,15 +43,36 @@ include_once "base.php"
 						<marquee>請民眾踴躍投稿電子報，讓電子報成為大家相互交流、的地方</marquee>
 					</span>
 					<span style="width:18%; display:inline-block;">
-						<a href="?do=login">會員登入</a>
+						<?php
+						if (empty($_SESSION['login'])) {
+							echo "<a href='?do=login'>會員登入</a>";
+						} else {
+							if ($_SESSION['login'] =='admin') {
+						?>
+								歡迎，<?= $_SESSION['login']; ?><br>
+								<a href="backend.php"><button>管理</button></a>
+								<a href="api/logout.php"><button>登出</button></a>
+
+
+							<?php
+							} else {
+							?>
+								歡迎，<?= $_SESSION['login']; ?>
+								<a href="api/logout.php"><button>登出</button></a>
+
+						<?php
+							}
+						}
+
+						?>
 					</span>
 					<div class="">
 						<?php
-						$do=(isset($_GET['do']))?$_GET['do']:"main";
-						$file="front/".$do.".php";
+						$do = (isset($_GET['do'])) ? $_GET['do'] : "main";
+						$file = "front/" . $do . ".php";
 						if (file_exists($file)) {
-						include_once $file;
-						}else{
+							include_once $file;
+						} else {
 							include_once "front/main.php";
 						}
 						?>

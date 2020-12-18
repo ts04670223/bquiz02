@@ -115,8 +115,8 @@ class DB
     return $this->pdo->query($sql)->fetchAll();
   }
 
-  function to($url)
-  {
-    header("location:" . $url);
-  }
+}
+function to($url)
+{
+  header("location:" . $url);
 }
