@@ -3,6 +3,7 @@ date_default_timezone_set("Asia/Taipei");
 session_start();
 $Total = new DB('total');
 $Mem=new DB("member");
+$News=new DB("news");
 
 // 判斷增加瀏覽人數
 if (empty($_SESSION['total'])) {
@@ -84,15 +85,15 @@ class DB
 
   function del($id)
   {
-    $sql = "delete from $this->table";
+    $sql = "delete from $this->table where";
 
     if (is_array($id)) {
       foreach ($id as $key => $value) {
         $tmp[] = sprintf("`%s`='%s'", $key, $value);
       }
-      $sql .= "where" . implode("&&", $tmp);
+      $sql .= implode("&&", $tmp);
     } else {
-      $sql .= "where `id`='$id'";
+      $sql .= " `id`='{$id}'";
     }
 
     return $this->pdo->exec($sql);
@@ -107,6 +108,7 @@ class DB
     } else {
       $sql = "insert into $this->table (`" . implode("`,`", array_keys($arr)) . "`) values('" . implode("','", $arr) . "')";
     }
+    
     return $this->pdo->exec($sql);
   }
 
