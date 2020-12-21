@@ -30,19 +30,51 @@ include_once "base.php"
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">
-				<a class="blo" href="?do=po">分類網誌</a>
-				<a class="blo" href="?do=news">最新文章</a>
-				<a class="blo" href="?do=pop">人氣文章</a>
-				<a class="blo" href="?do=know">講座訊息</a>
-				<a class="blo" href="?do=que">問卷調查</a>
+				<a class="blo" href="?do=admin">帳號管理</a>
+				<a class="blo" href="?do=news">分類網誌</a>
+				<a class="blo" href="?do=pop">最新文章管理</a>
+				<a class="blo" href="?do=know">講座管理</a>
+				<a class="blo" href="?do=que">問卷管理</a>
 			</div>
 			<div class="hal" id="main">
 				<div>
-
+					<span style="width:80%; display:inline-block;">
+						<marquee>請民眾踴躍投稿電子報，讓電子報成為大家相互交流、的地方</marquee>
+					</span>
 					<span style="width:18%; display:inline-block;">
-						<a href="?do=login">會員登入</a>
+						<?php
+						if (empty($_SESSION['login'])) {
+							echo "<a href='?do=login'>會員登入</a>";
+						} else {
+							if ($_SESSION['login'] =='admin') {
+						?>
+								歡迎，<?= $_SESSION['login']; ?><br>
+								<a href="backend.php"><button>管理</button></a>
+								<a href="api/logout.php"><button>登出</button></a>
+
+
+							<?php
+							} else {
+							?>
+								歡迎，<?= $_SESSION['login']; ?>
+								<a href="api/logout.php"><button>登出</button></a>
+
+						<?php
+							}
+						}
+
+						?>
 					</span>
 					<div class="">
+						<?php
+						$do = (isset($_GET['do'])) ? $_GET['do'] : "main";
+						$file = "backend/" . $do . ".php";
+						if (file_exists($file)) {
+							include_once $file;
+						} else {
+							include_once "backend/main.php";
+						}
+						?>
 					</div>
 				</div>
 			</div>
