@@ -37,7 +37,7 @@ class DB
         foreach ($arg[0] as $key => $value) {
           $tmp[] = sprintf("`%s`='%s'", $key, $value);
         }
-        $sql .= "where" . implode("&&", $tmp);
+        $sql .= " where " . implode("&&", $tmp);
       } else {
         $sql .= $arg[0];
       }
@@ -108,7 +108,7 @@ class DB
     } else {
       $sql = "insert into $this->table (`" . implode("`,`", array_keys($arr)) . "`) values('" . implode("','", $arr) . "')";
     }
-    
+
     return $this->pdo->exec($sql);
   }
 
