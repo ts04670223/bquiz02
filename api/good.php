@@ -11,11 +11,17 @@ switch($_POST['type']){
     'acc'=>$_POST['acc'],
     'news'=>$_POST['id']
   ]);
+  $news=$News->find($_POST['id']);
+  $news['good']++;
+  $News->save($news);
   break;
   case "2";
   $Log->del([
     'acc'=>$_POST['acc'],
     'news'=>$_POST['id']
-  ]);
+    ]);
+    $news=$News->find($_POST['id']);
+    $news['good']--;
+    $News->save($news);
   break;
 }

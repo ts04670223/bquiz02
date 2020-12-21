@@ -6,6 +6,14 @@ $Mem=new DB("member");
 $News=new DB("news");
 $Log=new DB('log');
 
+
+$typeStr=[
+  1=>"健康新知",
+  2=>"菸害防治",
+  3=>"癌症防治",
+  4=>"慢性病防治"
+];
+
 // 判斷增加瀏覽人數
 if (empty($_SESSION['total'])) {
   if ($Total->count(['date' => date("Y-m-d")]) > 0) {
