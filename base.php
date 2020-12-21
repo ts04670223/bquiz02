@@ -4,6 +4,7 @@ session_start();
 $Total = new DB('total');
 $Mem=new DB("member");
 $News=new DB("news");
+$Log=new DB('log');
 
 // 判斷增加瀏覽人數
 if (empty($_SESSION['total'])) {

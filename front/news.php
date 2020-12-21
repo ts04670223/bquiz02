@@ -17,12 +17,28 @@
     foreach ($all as $news) {
     ?>
       <tr>
-        <td class="header" id="t<?= $news['id']; ?>" style="cursor:pointer;color:blue;text-decoration:underline"><?= $news['title']; ?></td>
+        <td class="header"><?= $news['title']; ?></td>
         <td>
           <span class="title"><?= mb_substr($news['text'], 0, 30, 'utf8'); ?>...</span>
           <span class="text" style="display: none;"><?= nl2br($news['text']); ?></span>
         </td>
-        <td></td>
+        <td>
+          <?php
+          if (!empty($_SESSION['login'])) {
+            $chk = $Log->count(['acc' => $_SESSION['login'], 'news' => $news['id']]);
+            if ($chk) {
+              
+              ?>
+              <a href="#" id="good<?= $news['id']; ?>" onclick="good('<?= $news['id']; ?>','2','<?= $_SESSION['login']; ?>')">收回讚</a>
+            <?php
+          }else{
+            ?>
+            <a href="#" id="good<?= $news['id']; ?>" onclick="good('<?= $news['id']; ?>','1','<?= $_SESSION['login']; ?>')">讚</a>
+            <?php
+          }
+          }
+          ?>
+        </td>
       </tr>
     <?php
     }
@@ -49,10 +65,8 @@
 </fieldset>
 
 <script>
-  
-  $(".header").on("click",function(){
+  $(".header").on("click", function() {
     $(this).next().children('.title').toggle()
     $(this).next().children('.text').toggle()
   })
-
 </script>
