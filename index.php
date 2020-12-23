@@ -40,7 +40,7 @@ include_once "base.php"
 				<div>
 
 					<span style="width:80%; display:inline-block;">
-						<marquee>請民眾踴躍投稿電子報，讓電子報成為大家相互交流、的地方</marquee>
+						<marquee>請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地!詳見最新文章。</marquee>
 					</span>
 					<span style="width:18%; display:inline-block;">
 						<?php
