@@ -5,6 +5,7 @@ $Total = new DB('total');
 $Mem=new DB("member");
 $News=new DB("news");
 $Log=new DB('log');
+$Que=new DB('que');
 
 
 $typeStr=[
@@ -80,7 +81,7 @@ class DB
   }
   function find($id)
   {
-    $sql = "select * from $this->table";
+    $sql = "select * from $this->table ";
     if (is_array($id)) {
       foreach ($id as $key => $value) {
         $tmp[] = sprintf("`%s`='%s'", $key, $value);
@@ -94,15 +95,15 @@ class DB
 
   function del($id)
   {
-    $sql = "delete from $this->table where";
+    $sql = "delete from $this->table ";
 
     if (is_array($id)) {
       foreach ($id as $key => $value) {
         $tmp[] = sprintf("`%s`='%s'", $key, $value);
       }
-      $sql .= implode("&&", $tmp);
+      $sql .=" where " .implode("&&", $tmp);
     } else {
-      $sql .= " `id`='{$id}'";
+      $sql .= " where `id`='{$id}'";
     }
 
     return $this->pdo->exec($sql);
