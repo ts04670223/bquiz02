@@ -23,18 +23,31 @@
 
 <script>
 
-$("#nav").text($("#t1").text());
-
+$("#nav").text($("#t1").text())
+getTitle(1)
 
   function nav(type){
     let str=$(type).text()
     $('#nav').text(str);
-    let t=$(type).attr('id').replace("t","");
+    let t=$(type).attr('id').replace("t","")
     getTitle(t)
   }
   function getTitle(type){
     $.get("api/get_title.php",{type},function(titles){
-      $(".title").html(titles)
+      let tt=JSON.parse(titles)
+      console.log(tt)
+      $(".title").html("")
+      tt.forEach(function(value,idx){
+        console.log(value)
+        let a=document.createElement('a');
+        let text=document.createTextNode(value.title);
+        a.setAttribute('href',`javascript:getNews("${value.id}")`)
+        a.setAttribute('style',"display:block")
+        a.appendChild(text)
+        // let str=`<a href='javascript:getNews(${value.id})' style='display block'>${value.title}</a>`
+        $(".title").append(a)
+      })
+      // $(".title").html(tt[0].titles)
     })
   }
   function getNews(id){

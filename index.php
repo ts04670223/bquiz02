@@ -52,14 +52,12 @@ include_once "base.php"
 								歡迎，<?= $_SESSION['login']; ?><br>
 								<a href="backend.php"><button>管理</button></a>
 								<a href="api/logout.php"><button>登出</button></a>
-
-
-							<?php
+								
+								<?php
 							} else {
-							?>
-								歡迎，<?= $_SESSION['login']; ?>
+								?>
+								歡迎，<?= $_SESSION['login']; ?><br>
 								<a href="api/logout.php"><button>登出</button></a>
-
 						<?php
 							}
 						}

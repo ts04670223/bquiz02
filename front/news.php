@@ -27,15 +27,15 @@
           if (!empty($_SESSION['login'])) {
             $chk = $Log->count(['acc' => $_SESSION['login'], 'news' => $news['id']]);
             if ($chk) {
-              
-              ?>
-              <a href="#" id="good<?= $news['id']; ?>" onclick="good('<?= $news['id']; ?>','2','<?= $_SESSION['login']; ?>')">收回讚</a>
+
+          ?>
+              <a href="#" class="gg" id="news<?= $news['id']; ?>">收回讚</a>
             <?php
-          }else{
+            } else {
             ?>
-            <a href="#" id="good<?= $news['id']; ?>" onclick="good('<?= $news['id']; ?>','1','<?= $_SESSION['login']; ?>')">讚</a>
-            <?php
-          }
+              <a href="#" class="gg" id="news<?= $news['id']; ?>">讚</a>
+          <?php
+            }
           }
           ?>
         </td>
@@ -68,5 +68,17 @@
   $(".header").on("click", function() {
     $(this).next().children('.title').toggle()
     $(this).next().children('.text').toggle()
+  })
+
+  $(".gg").on("click", function() {
+    let id=$(this).attr('id').replace("news","");
+    let text=$(this).text();
+    if (text == '讚') {
+      $(this).text('收回讚')
+    } else {
+      $(this).text('讚')
+    }
+    $.post("api/good.php",{id})
+
   })
 </script>

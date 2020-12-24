@@ -23,13 +23,13 @@
 
 <script>
 
-$("#nav").text($("#t1").text());
-
+$("#nav").text($("#t1").text())
+getTitle(1)
 
   function nav(type){
     let str=$(type).text()
     $('#nav').text(str);
-    let t=$(type).attr('id').replace("t","");
+    let t=$(type).attr('id').replace("t","")
     getTitle(t)
   }
   function getTitle(type){
